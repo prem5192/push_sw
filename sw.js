@@ -1,5 +1,11 @@
 self.addEventListener('install', function(event) {
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        '/push_sw/jquery-2.1.4.min.js'
+      ]);
+    })
+  );
   console.log('Installed', event);
 });
 
