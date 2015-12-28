@@ -29,36 +29,20 @@ function subscribe() {
     console.log("push subscription............", pushSubscription)
     sub = pushSubscription;
     console.log('Subscribed! Endpoint:', sub.endpoint);
+    var endPoint = (sub.endpoint.split("https://android.googleapis.com/gcm/send/"))[1];
+    console.log("endPoint.....", endPoint);
     $.ajax({
-      url: "https://android.googleapis.com/gcm/send/",
+      url: "https://android.googleapis.com/gcm/send",
       type : "POST",
       dataType : "json",
-      header: "Access-Control-Allow-Origin: *",
-      header : "Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Headers",
       contentType : "application/json",
-      authorization : "key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ",
-      data :(sub.endpoint.split("https://android.googleapis.com/gcm/send/"))[1],
-      timeout : 1000000,
-      crossDomain : true,
-      cache : false,
-      async : true,
-
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ");
-      },
-
+      header: "Access-Control-Allow-Origin:*",
+      Authorization:"key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ",
+      data : JSON.stringify({
+        "registration_ids" : ["eu92dB_ifQw:APA91bHVbA3kVKep8g3n3_qToELCnwfmYKTzRB2QrHikncx_qN3lribiww4SZOJpzwBM6ti8TIpVaZIqPMKd5wH4VQCP3cagw-YXtHNM-Bx9wiyPoD_Ds720VmK5S9XqItqSrejp2IyQ"]
+    }),
       success : function(response, e ,xhr){
-        console.log("success.....",response);
-
-      },
-
-      error : function(jqXHR, textStatus, errorThrown){
-        console.log("error....",errorThrown);
-
-      },
-
-      complete : function(response, e ,xhr){
-
+      console.log("success.....",response);
       }
     });
     subscribeButton.textContent = 'Unsubscribe';
