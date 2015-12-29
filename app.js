@@ -44,7 +44,7 @@ function subscribe() {
      beforeSend : function(req) { 
         req.setRequestHeader('Authorization', 'key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ'); 
         req.setRequestHeader('Access-Control-Allow-Origin', '*'); 
-        req.setRequestHeader('Access-Control-Request-Method', 'POST');
+        //req.setRequestHeader('Access-Control-Request-Method', 'POST');
       },
      success : function(response, e ,xhr){
        console.log("success.....",response);
