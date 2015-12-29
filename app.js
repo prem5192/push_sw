@@ -32,19 +32,24 @@ function subscribe() {
     var endPoint = (sub.endpoint.split("https://android.googleapis.com/gcm/send/"))[1];
     console.log("endPoint.....", endPoint);
     $.ajax({
-      url: "https://android.googleapis.com/gcm/send",
-      type : "POST",
-      dataType : "json",
-      contentType : "application/json",
-      header: "Access-Control-Allow-Origin:*",
-      Authorization:"key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ",
-      data : JSON.stringify({
-        "registration_ids" : ["eu92dB_ifQw:APA91bHVbA3kVKep8g3n3_qToELCnwfmYKTzRB2QrHikncx_qN3lribiww4SZOJpzwBM6ti8TIpVaZIqPMKd5wH4VQCP3cagw-YXtHNM-Bx9wiyPoD_Ds720VmK5S9XqItqSrejp2IyQ"]
-    }),
-      success : function(response, e ,xhr){
-      console.log("success.....",response);
-      }
-    });
+     url: "https://android.googleapis.com/gcm/send",
+     type : "POST",
+     dataType: "json",
+     contentType: "application/json",
+     crossDomain:true,
+    //header:"Access-Control-Allow-Origin:*",
+     data : JSON.stringify({
+        "registration_ids" : [endPoint]  
+      }),
+     beforeSend : function(req) { 
+        req.setRequestHeader('Authorization', 'key=AIzaSyC3ulUzHUwB2E1kbs-o9iOhMtz2a-DnLDQ'); 
+        req.setRequestHeader('Access-Control-Allow-Origin', '*'); 
+        req.setRequestHeader('Access-Control-Request-Method', 'POST');
+      },
+     success : function(response, e ,xhr){
+       console.log("success.....",response);
+     }
+   });
     subscribeButton.textContent = 'Unsubscribe';
     isSubscribed = true;
   });
