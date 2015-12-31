@@ -1,4 +1,31 @@
 {
   "name": "Push Notifications",
-  "gcm_sender_id": "1017299545899"
+  "short_name": "Push",
+  "gcm_sender_id": "1017299545899",
+  "icons": [  
+    {  
+      "src": "/images/icon-192x192.png",  
+      "sizes": "192x192",  
+      "type": "image/png"  
+    },  
+    {  
+      "src": "/images/icon-144x144.png",  
+      "sizes": "144x144",  
+      "type": "image/png"  
+    },  
+    {  
+      "src": "/images/icon-128X128.png",  
+      "sizes": "128x128",  
+      "type": "image/png"  
+    },  
+    {  
+      "src": "/images/icon-512x512.png",  
+      "sizes": "512x512",  
+      "type": "image/png"  
+    }
+  ],  
+  "background_color": "#FAFAFA",
+  "theme_color": "#512DA8", 
+  "display": "standalone",  
+  "orientation": "portrait"  
 }
